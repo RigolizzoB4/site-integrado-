@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contato - B4 Trade</title>
+    <meta name="description" content="Entre em contato com a B4 Trade. Comércio exterior, importação e exportação. Parte do Grupo B4.">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom CSS */
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .top-bar {
+            background: #1a1a1a;
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .hero-section {
+            position: relative;
+            padding: 80px 0;
+            color: white;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('containers-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            z-index: -1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+        
+        .min-vh-75 {
+            min-height: 75vh;
+        }
+        
+        .contact-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6600 0%, #ff8533 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 400px;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .btn-warning {
+            background-color: #ff6600;
+            border-color: #ff6600;
+        }
+        
+        .btn-warning:hover {
+            background-color: #e55a00;
+            border-color: #e55a00;
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            transition: transform 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+        
+        .whatsapp-float i {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Contact Bar -->
+    <div class="col-md-6 text-end">
+                    <small class="social-links">
+                        <a href="https://br.linkedin.com/company/grupob4" target="_blank" class="text-white text-decoration-none me-3">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-white text-decoration-none me-3">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <main role="main">
+        <!-- Hero Section -->
+        <section class="hero-section position-relative overflow-hidden">
+            <div class="hero-background"></div>
+            <div class="hero-overlay"></div>
+            <div class="container position-relative">
+                <div class="row align-items-center min-vh-75">
+                    <div class="col-lg-6">
+                        <div class="hero-content text-white">
+                            <h1 class="display-4 fw-bold mb-4 fade-in">Entre em Contato</h1>
+                            <p class="lead mb-4 fade-in">
+                                O Grupo B4 está preparado para ajudar nas realizações de operações de crédito para os mais diversos tipos de empresas. São mais de 25 anos no mercado de Fomento Mercantil e Fundo de Investimento, oferecendo soluções financeiras inteligentes para negócios.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hero-image-container fade-in">
+                            <img src="aviao.png" alt="Contato B4 Trade" class="img-fluid rounded shadow-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Information Section -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="text-center mb-5">
+                            <h2 class="display-5 fw-bold mb-3">Informações de Contato</h2>
+                            <p class="lead text-muted">Entre em contato conosco através dos canais abaixo</p>
+                        </div>
+                        
+                        <div class="row g-4 mb-5">
+                            <div class="col-md-6">
+                                <div class="contact-card h-100 p-4 bg-light rounded-3">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-phone fa-2x"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-1">Telefone</h5>
+                                            <p class="mb-0 fw-bold">(19) 3751-4300</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="contact-card h-100 p-4 bg-light rounded-3">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-envelope fa-2x"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-1">E-mail</h5>
+                                            <p class="mb-0 fw-bold">contato@b4.com.br</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="contact-card p-4 bg-light rounded-3">
+                                    <div class="d-flex align-items-start">
+                                        <div class="contact-icon me-3">
+                                            <i class="fas fa-map-marker-alt fa-2x"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-1">Endereço</h5>
+                                            <p class="mb-0 fw-bold">
+                                                Av. Coronel Silva Teles nº 1002,<br>
+                                                7º andar. Bairro Cambuí – Campinas/SP
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mapa do Google Maps -->
+                        <div class="row mb-5">
+                            <div class="col-12">
+                                <div class="text-center mb-4">
+                                    <h3 class="fw-bold">Nossa Localização</h3>
+                                    <p class="text-muted">Encontre-nos no coração de Campinas</p>
+                                </div>
+                                <div class="map-container">
+                                    <iframe 
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.0234567890123!2d-47.0481669!3d-22.8943798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8ca2a8c3d0f95%3A0xacb6cd4b940ba5a1!2sAv.%20Cel.%20Silva%20Telles%2C%201002%20-%20Cambui%2C%20Campinas%20-%20SP%2C%2013024-001!5e0!3m2!1spt!2sbr!4v1692345678901!5m2!1spt!2sbr"
+                                        allowfullscreen="" 
+                                        loading="lazy" 
+                                        referrerpolicy="no-referrer-when-downgrade">
+                                    </iframe>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <a href="https://wa.me/5519999999999" class="btn btn-success btn-lg" target="_blank">
+                                <i class="fab fa-whatsapp me-2"></i>Falar no WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">B4 Trade</h5>
+                    <p class="text-light">
+                        Parte do Grupo B4, com mais de 25 anos de experiência no mercado financeiro. 
+                        Agora também especializada em comércio exterior, importação e exportação.
+                    </p>
+                    <div class="d-flex social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="https://br.linkedin.com/company/grupob4" target="_blank" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Navegação</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="#quem-somos" class="text-light text-decoration-none">Quem Somos</a></li>
+                        <li><a href="#servicos" class="text-light text-decoration-none">Serviços</a></li>
+                        <li><a href="#contato" class="text-light text-decoration-none">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Serviços</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#importacao" class="text-light text-decoration-none">Importação</a></li>
+                        <li><a href="#exportacao" class="text-light text-decoration-none">Exportação</a></li>
+                        <li><a href="#logistica" class="text-light text-decoration-none">Logística</a></li>
+                        <li><a href="#assessoria" class="text-light text-decoration-none">Assessoria</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 mb-4">
+                    <h6 class="fw-bold mb-3">Contato</h6>
+                    <div class="text-light">
+                        <p><i class="fas fa-map-marker-alt me-2"></i>Av. Coronel Silva Teles nº 1002, 7º andar<br>Bairro Cambuí – Campinas/SP</p>
+                        <p><i class="fas fa-phone me-2"></i>(19) 3751-4300</p>
+                        <p><i class="fas fa-envelope me-2"></i>contato@b4.com.br</p>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 B4 Trade - Grupo B4. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="#" class="text-light text-decoration-none me-3">Política de Privacidade</a>
+                    <a href="#" class="text-light text-decoration-none">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5519999999999" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+

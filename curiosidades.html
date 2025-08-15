@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curiosidades do Trade - B4 Trade</title>
+    <meta name="description" content="Descubra dados fascinantes sobre o mundo do comércio exterior, importação e exportação no Brasil e no mundo.">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom CSS */
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .top-bar {
+            background: #1a1a1a;
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .hero-section {
+            position: relative;
+            padding: 80px 0;
+            color: white;
+            background: linear-gradient(135deg, #ff6600 0%, #ff8533 100%);
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .highlight {
+            color: #ff6600;
+        }
+        
+        .stat-item {
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            height: 100%;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ff6600;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .curiosity-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            height: 100%;
+        }
+        
+        .curiosity-card h5 {
+            color: #ff6600;
+            margin-bottom: 1rem;
+        }
+        
+        .product-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            height: 100%;
+        }
+        
+        .product-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6600;
+        }
+        
+        .tips-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #ff6600;
+            margin-bottom: 2rem;
+        }
+        
+        .btn-warning {
+            background-color: #ff6600;
+            border-color: #ff6600;
+        }
+        
+        .btn-warning:hover {
+            background-color: #e55a00;
+            border-color: #e55a00;
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            border-radius: 10px;
+            padding: 10px 15px;
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .whatsapp-float i {
+            font-size: 1.5rem;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <small>
+                        <i class="fas fa-phone me-2"></i>(19) 3751-4300
+                        <i class="fas fa-envelope ms-3 me-2"></i>contato@b4.com.br
+                    </small>
+                </div>
+                <div class="col-md-6 text-end">
+                    <small class="social-links">
+                        <a href="https://br.linkedin.com/company/grupob4" target="_blank" class="text-white text-decoration-none">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-white text-decoration-none">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="logo.png" alt="B4 Trade" style="height: 110px; width: auto;">
+                </a>            
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link fw-medium" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-medium" href="index.html#quem-somos">Quem Somos</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle fw-medium" href="#" id="servicosDropdown" role="button" data-bs-toggle="dropdown">
+                                Serviços
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><span class="dropdown-item-text fw-bold text-muted">Nossos Serviços</span></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="index.html#assessoria">Assessoria</a></li>
+                                <li><a class="dropdown-item" href="index.html#logistica">Gestão da Logística</a></li>
+                                <li><a class="dropdown-item" href="index.html#transporte">Transporte Internacional</a></li>
+                                <li><a class="dropdown-item" href="index.html#despachante">Despachante Aduaneiro</a></li>
+                                <li><a class="dropdown-item" href="index.html#exportacao">Exportação</a></li>
+                                <li><a class="dropdown-item" href="index.html#importacao">Importação</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-medium" href="https://br.linkedin.com/company/grupob4" target="_blank">Informações</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-medium" href="index.html#contato">Contato</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-medium active" href="curiosidades.html">Curiosidades</a>
+                        </li>
+                    </ul>
+                    
+                    <div class="d-flex align-items-center">
+                        <a href="https://wa.me/5519999999999" class="btn btn-success btn-md me-3" target="_blank">
+                            <i class="fab fa-whatsapp me-1"></i>WhatsApp
+                        </a>
+                        <a href="http://www2.b4.com.br/Seguranca/Login" target="_blank" class="btn btn-outline-dark btn-md">
+                            <i class="fas fa-sign-in-alt me-1"></i>Entrar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1 class="display-4 fw-bold mb-3">Curiosidades do Trade</h1>
+                        <p class="lead mb-4">
+                            Descubra dados fascinantes sobre o mundo do comércio exterior, importação e exportação no Brasil e no mundo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brasil no Comércio Mundial -->
+        <section class="section-padding">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="highlight">Brasil</span> no Comércio Mundial
+                </h2>
+                
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-item">
+                            <span class="stat-number">20º</span>
+                            <div class="stat-label"><strong>Posição</strong></div>
+                            <p class="mt-3">O Brasil é a 20ª maior economia exportadora do mundo</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-item">
+                            <span class="stat-number">US$ 334 bi</span>
+                            <div class="stat-label"><strong>Exportações</strong></div>
+                            <p class="mt-3">Valor das exportações brasileiras em 2023</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-item">
+                            <span class="stat-number">48%</span>
+                            <div class="stat-label"><strong>Agronegócio</strong></div>
+                            <p class="mt-3">Representa 48% das exportações brasileiras</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-item">
+                            <span class="stat-number">180</span>
+                            <div class="stat-label"><strong>Países</strong></div>
+                            <p class="mt-3">O Brasil exporta para mais de 180 países</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Curiosidades Fascinantes -->
+        <section class="section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">
+                    Curiosidades <span class="highlight">Fascinantes</span>
+                </h2>
+                
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="curiosity-card">
+                            <h5><i class="fas fa-ship me-2"></i>Contêineres Gigantes</h5>
+                            <p>Um único navio porta-contêineres pode transportar até 24.000 contêineres TEU (Twenty-foot Equivalent Unit). Se colocados em fila, ocupariam mais de 146 km!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="curiosity-card">
+                            <h5><i class="fas fa-coffee me-2"></i>Café Brasileiro</h5>
+                            <p>O Brasil é o maior produtor e exportador de café do mundo há mais de 150 anos, representando cerca de 35% da produção mundial de café.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="curiosity-card">
+                            <h5><i class="fas fa-clock me-2"></i>Tempo de Trânsito</h5>
+                            <p>Uma carga do Brasil para a China leva em média 35-45 dias por via marítima, enquanto por via aérea leva apenas 2-3 dias, mas custa 10x mais.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="curiosity-card">
+                            <h5><i class="fas fa-weight me-2"></i>Peso vs Volume</h5>
+                            <p>No transporte aéreo, 1 metro cúbico equivale a 167kg para cálculo de frete. Já no marítimo, o que importa é o peso real ou volume, o que for maior.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="curiosity-card">
+                            <h5><i class="fas fa-file-alt me-2"></i>Documentação</h5>
+                            <p>Uma operação de importação pode envolver mais de 15 documentos diferentes, desde licenças até certificados sanitários e de origem.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="curiosity-card">
+                            <h5><i class="fas fa-globe me-2"></i>Comércio Global</h5>
+                            <p>O comércio internacional movimenta mais de US$ 28 trilhões por ano, equivalente a cerca de 30% do PIB mundial.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Principais Produtos Brasileiros -->
+        <section class="section-padding">
+            <div class="container">
+                <h2 class="section-title">
+                    Principais <span class="highlight">Produtos Brasileiros</span>
+                </h2>
+                
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="product-card">
+                            <h5><i class="fas fa-seedling me-2"></i>Soja</h5>
+                            <div class="product-value">US$ 55 bilhões</div>
+                            <p class="mt-3">Principal produto de exportação brasileiro, destinado principalmente à China.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <div class="product-card">
+                            <h5><i class="fas fa-oil-can me-2"></i>Petróleo</h5>
+                            <div class="product-value">US$ 43 bilhões</div>
+                            <p class="mt-3">Segundo maior produto de exportação, principalmente para Estados Unidos e China.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <div class="product-card">
+                            <h5><i class="fas fa-mountain me-2"></i>Minério de Ferro</h5>
+                            <div class="product-value">US$ 28 bilhões</div>
+                            <p class="mt-3">Terceiro maior produto, essencial para a indústria siderúrgica mundial.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <div class="product-card">
+                            <h5><i class="fas fa-drumstick-bite me-2"></i>Carne Bovina</h5>
+                            <div class="product-value">US$ 12 bilhões</div>
+                            <p class="mt-3">Brasil é o maior exportador mundial de carne bovina.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <div class="product-card">
+                            <h5><i class="fas fa-cube me-2"></i>Açúcar</h5>
+                            <div class="product-value">US$ 8 bilhões</div>
+                            <p class="mt-3">Maior produtor e exportador mundial de açúcar de cana.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <div class="product-card">
+                            <h5><i class="fas fa-coffee me-2"></i>Café</h5>
+                            <div class="product-value">US$ 6 bilhões</div>
+                            <p class="mt-3">Líder mundial há mais de 150 anos na produção e exportação.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dicas Importantes -->
+        <section class="section-padding bg-light">
+            <div class="container">
+                <h2 class="section-title">
+                    Dicas <span class="highlight">Importantes</span>
+                </h2>
+                
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="tips-card">
+                            <h5><i class="fas fa-barcode me-2"></i>NCM - Nomenclatura Comum do Mercosul</h5>
+                            <p>Cada produto tem um código NCM de 8 dígitos que determina os impostos e regulamentações. Uma classificação incorreta pode resultar em multas e atrasos na liberação da carga.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="tips-card">
+                            <h5><i class="fas fa-shield-alt me-2"></i>Seguro Internacional</h5>
+                            <p>É obrigatório contratar seguro para cargas importadas. O valor mínimo é de 110% do valor CIF (Cost, Insurance and Freight) da mercadoria.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="tips-card">
+                            <h5><i class="fas fa-calendar-alt me-2"></i>Prazo de Permanência</h5>
+                            <p>Mercadorias podem ficar no porto por até 90 dias. Após esse período, são consideradas abandonadas e podem ser leiloadas pela Receita Federal.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="tips-card">
+                            <h5><i class="fas fa-calculator me-2"></i>Impostos de Importação</h5>
+                            <p>Os principais impostos são: II (Imposto de Importação), IPI, PIS, COFINS e ICMS. Juntos, podem representar de 20% a 60% do valor da mercadoria.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section-padding" style="background: linear-gradient(135deg, #ff6600 0%, #ff8533 100%); color: white;">
+            <div class="container text-center">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <h3 class="mb-3">Precisa de Ajuda com seu Comércio Exterior?</h3>
+                        <p class="lead mb-4">
+                            Nossa equipe de especialistas está pronta para orientar você em todas as etapas do processo de importação e exportação.
+                        </p>
+                        <div class="d-flex flex-wrap justify-content-center gap-3">
+                            <a href="https://wa.me/5519999999999" class="btn btn-success btn-lg" target="_blank">
+                                <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                            </a>
+                            <a href="mailto:contato@b4.com.br" class="btn btn-light btn-lg">
+                                <i class="fas fa-envelope me-2"></i>Entre em Contato
+                            </a>
+                            <a href="tel:+551937514300" class="btn btn-outline-light btn-lg">
+                                <i class="fas fa-phone me-2"></i>Ligar Agora
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">B4 Trade</h5>
+                    <p class="text-light">
+                        Parte do Grupo B4, com mais de 25 anos de experiência no mercado financeiro. 
+                        Agora também especializada em comércio exterior, importação e exportação.
+                    </p>
+                    <div class="d-flex social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="https://br.linkedin.com/company/grupob4" target="_blank" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Navegação</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="index.html#quem-somos" class="text-light text-decoration-none">Quem Somos</a></li>
+                        <li><a href="index.html#servicos" class="text-light text-decoration-none">Serviços</a></li>
+                        <li><a href="index.html#contato" class="text-light text-decoration-none">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Serviços</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html#importacao" class="text-light text-decoration-none">Importação</a></li>
+                        <li><a href="index.html#exportacao" class="text-light text-decoration-none">Exportação</a></li>
+                        <li><a href="index.html#logistica" class="text-light text-decoration-none">Logística</a></li>
+                        <li><a href="index.html#assessoria" class="text-light text-decoration-none">Assessoria</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Contato</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            Campinas, SP
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-phone me-2"></i>
+                            (19) 3751-4300
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-envelope me-2"></i>
+                            contato@b4.com.br
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 B4 Trade. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Parte do Grupo B4 - Cultivando valor há mais de 25 anos</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5519999999999" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
