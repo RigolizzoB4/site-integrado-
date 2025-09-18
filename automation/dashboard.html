@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerMate Automation Dashboard - B4 Trade</title>
+    <meta name="description" content="Dashboard de automação PowerMate para validação de ZIP e integração com Kommo CRM">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .navbar-brand img {
+            height: 40px;
+        }
+        
+        .status-card {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        
+        .status-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .status-online {
+            border-left: 4px solid #28a745;
+        }
+        
+        .status-offline {
+            border-left: 4px solid #dc3545;
+        }
+        
+        .status-warning {
+            border-left: 4px solid #ffc107;
+        }
+        
+        .log-container {
+            height: 400px;
+            overflow-y: auto;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .log-entry {
+            margin-bottom: 5px;
+            padding: 2px 0;
+        }
+        
+        .log-info { color: #17a2b8; }
+        .log-error { color: #dc3545; }
+        .log-warn { color: #ffc107; }
+        .log-success { color: #28a745; }
+        
+        .upload-zone {
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .upload-zone:hover {
+            border-color: #ff6600;
+            background-color: #fff8f5;
+        }
+        
+        .upload-zone.dragover {
+            border-color: #ff6600;
+            background-color: #fff8f5;
+        }
+        
+        .validation-result {
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .validation-success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        
+        .validation-error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #ff6600, #ff8533);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+        }
+        
+        .btn-primary {
+            background-color: #ff6600;
+            border-color: #ff6600;
+        }
+        
+        .btn-primary:hover {
+            background-color: #e55a00;
+            border-color: #e55a00;
+        }
+        
+        .progress-bar {
+            background-color: #ff6600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <img src="../logo.png" alt="B4 Trade" class="me-2">
+                <span class="fw-bold">PowerMate Automation</span>
+            </a>
+            <div class="navbar-nav ms-auto">
+                <span class="navbar-text me-3">
+                    <i class="fas fa-circle text-success me-1" id="connection-status"></i>
+                    <span id="connection-text">Conectado</span>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Status Cards -->
+        <div class="row mb-4">
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card status-card status-offline" id="monitor-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="card-title mb-0">Monitor de Pasta</h6>
+                                <p class="card-text text-muted mb-0" id="monitor-status">Parado</p>
+                            </div>
+                            <i class="fas fa-folder-open fa-2x text-muted"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card status-card status-offline" id="kommo-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="card-title mb-0">Kommo CRM</h6>
+                                <p class="card-text text-muted mb-0" id="kommo-status">Desconectado</p>
+                            </div>
+                            <i class="fas fa-users fa-2x text-muted"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card metric-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="card-title mb-0">Arquivos Processados</h6>
+                                <h3 class="mb-0" id="files-processed">0</h3>
+                            </div>
+                            <i class="fas fa-file-archive fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-3">
+                <div class="card metric-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="card-title mb-0">Uptime</h6>
+                                <h6 class="mb-0" id="uptime">0m</h6>
+                            </div>
+                            <i class="fas fa-clock fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="row">
+            <!-- Control Panel -->
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-cogs me-2"></i>Controles</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2 mb-3">
+                            <button class="btn btn-success" id="start-monitor">
+                                <i class="fas fa-play me-2"></i>Iniciar Monitor
+                            </button>
+                            <button class="btn btn-warning" id="stop-monitor">
+                                <i class="fas fa-stop me-2"></i>Parar Monitor
+                            </button>
+                            <button class="btn btn-info" id="restart-monitor">
+                                <i class="fas fa-redo me-2"></i>Reiniciar Monitor
+                            </button>
+                        </div>
+                        
+                        <hr>
+                        
+                        <h6>Configurações Rápidas</h6>
+                        <div class="mb-3">
+                            <label class="form-label">Pasta Monitorada</label>
+                            <input type="text" class="form-control" id="watch-path" readonly>
+                        </div>
+                        
+                        <button class="btn btn-primary w-100" id="test-kommo">
+                            <i class="fas fa-test-tube me-2"></i>Testar Kommo
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ZIP Validator -->
+            <div class="col-lg-8 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-file-archive me-2"></i>Validador de ZIP</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="upload-zone" id="upload-zone">
+                            <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                            <h5>Arraste um arquivo ZIP aqui ou clique para selecionar</h5>
+                            <p class="text-muted">Suporta: .zip, .rar, .7z (máx. 50MB)</p>
+                            <input type="file" id="file-input" accept=".zip,.rar,.7z" style="display: none;">
+                        </div>
+                        
+                        <div id="validation-result" style="display: none;"></div>
+                        
+                        <div class="progress mt-3" id="upload-progress" style="display: none;">
+                            <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logs Section -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="fas fa-terminal me-2"></i>Logs em Tempo Real</h5>
+                        <div>
+                            <button class="btn btn-sm btn-outline-secondary" id="clear-logs">
+                                <i class="fas fa-eraser me-1"></i>Limpar
+                            </button>
+                            <button class="btn btn-sm btn-outline-secondary" id="auto-scroll" data-auto="true">
+                                <i class="fas fa-arrow-down me-1"></i>Auto-scroll
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="log-container" id="log-container">
+                            <div class="log-entry log-info">
+                                [SYSTEM] Dashboard PowerMate inicializado...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Socket.IO -->
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    
+    <script>
+        // Dashboard PowerMate JavaScript
+        class PowerMateDashboard {
+            constructor() {
+                this.socket = io();
+                this.autoScroll = true;
+                this.filesProcessed = 0;
+                this.startTime = Date.now();
+                
+                this.initializeEventListeners();
+                this.setupSocketEvents();
+                this.startUptimeTimer();
+                this.loadInitialData();
+            }
+
+            initializeEventListeners() {
+                // Controles do monitor
+                document.getElementById('start-monitor').addEventListener('click', () => this.controlMonitor('start'));
+                document.getElementById('stop-monitor').addEventListener('click', () => this.controlMonitor('stop'));
+                document.getElementById('restart-monitor').addEventListener('click', () => this.controlMonitor('restart'));
+                
+                // Teste Kommo
+                document.getElementById('test-kommo').addEventListener('click', () => this.testKommo());
+                
+                // Upload de arquivo
+                const uploadZone = document.getElementById('upload-zone');
+                const fileInput = document.getElementById('file-input');
+                
+                uploadZone.addEventListener('click', () => fileInput.click());
+                uploadZone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    uploadZone.classList.add('dragover');
+                });
+                uploadZone.addEventListener('dragleave', () => {
+                    uploadZone.classList.remove('dragover');
+                });
+                uploadZone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    uploadZone.classList.remove('dragover');
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        this.validateFile(files[0]);
+                    }
+                });
+                
+                fileInput.addEventListener('change', (e) => {
+                    if (e.target.files.length > 0) {
+                        this.validateFile(e.target.files[0]);
+                    }
+                });
+                
+                // Controles de log
+                document.getElementById('clear-logs').addEventListener('click', () => this.clearLogs());
+                document.getElementById('auto-scroll').addEventListener('click', (e) => this.toggleAutoScroll(e));
+            }
+
+            setupSocketEvents() {
+                this.socket.on('connect', () => {
+                    this.updateConnectionStatus(true);
+                    this.socket.emit('request-status');
+                });
+
+                this.socket.on('disconnect', () => {
+                    this.updateConnectionStatus(false);
+                });
+
+                this.socket.on('status', (status) => {
+                    this.updateStatus(status);
+                });
+
+                this.socket.on('log', (logEntry) => {
+                    this.addLogEntry(logEntry);
+                });
+            }
+
+            updateConnectionStatus(connected) {
+                const statusIcon = document.getElementById('connection-status');
+                const statusText = document.getElementById('connection-text');
+                
+                if (connected) {
+                    statusIcon.className = 'fas fa-circle text-success me-1';
+                    statusText.textContent = 'Conectado';
+                } else {
+                    statusIcon.className = 'fas fa-circle text-danger me-1';
+                    statusText.textContent = 'Desconectado';
+                }
+            }
+
+            updateStatus(status) {
+                // Atualizar status do monitor
+                const monitorCard = document.getElementById('monitor-card');
+                const monitorStatus = document.getElementById('monitor-status');
+                
+                if (status.monitor.isActive) {
+                    monitorCard.className = 'card status-card status-online';
+                    monitorStatus.textContent = 'Ativo';
+                } else {
+                    monitorCard.className = 'card status-card status-offline';
+                    monitorStatus.textContent = 'Parado';
+                }
+
+                // Atualizar status do Kommo
+                const kommoCard = document.getElementById('kommo-card');
+                const kommoStatus = document.getElementById('kommo-status');
+                
+                if (status.kommo.connected) {
+                    kommoCard.className = 'card status-card status-online';
+                    kommoStatus.textContent = 'Conectado';
+                } else {
+                    kommoCard.className = 'card status-card status-offline';
+                    kommoStatus.textContent = 'Desconectado';
+                }
+
+                // Atualizar pasta monitorada
+                document.getElementById('watch-path').value = status.monitor.watchPath || '';
+            }
+
+            addLogEntry(logEntry) {
+                const logContainer = document.getElementById('log-container');
+                const logDiv = document.createElement('div');
+                logDiv.className = `log-entry log-${logEntry.level}`;
+                
+                const timestamp = new Date(logEntry.timestamp).toLocaleTimeString();
+                logDiv.innerHTML = `[${timestamp}] [${logEntry.level.toUpperCase()}] ${logEntry.message}`;
+                
+                logContainer.appendChild(logDiv);
+
+                // Manter apenas as últimas 100 entradas
+                const entries = logContainer.querySelectorAll('.log-entry');
+                if (entries.length > 100) {
+                    entries[0].remove();
+                }
+
+                // Auto-scroll se habilitado
+                if (this.autoScroll) {
+                    logContainer.scrollTop = logContainer.scrollHeight;
+                }
+
+                // Incrementar contador se for arquivo processado
+                if (logEntry.message.includes('processado')) {
+                    this.filesProcessed++;
+                    document.getElementById('files-processed').textContent = this.filesProcessed;
+                }
+            }
+
+            async controlMonitor(action) {
+                try {
+                    const response = await fetch(`/api/monitor/${action}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                    
+                    const result = await response.json();
+                    if (result.success) {
+                        this.addLogEntry({
+                            level: 'info',
+                            message: result.message,
+                            timestamp: new Date()
+                        });
+                    }
+                } catch (error) {
+                    console.error('Erro no controle do monitor:', error);
+                }
+            }
+
+            async testKommo() {
+                try {
+                    document.getElementById('test-kommo').disabled = true;
+                    document.getElementById('test-kommo').innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Testando...';
+                    
+                    const response = await fetch('/api/kommo/test', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        this.addLogEntry({
+                            level: 'info',
+                            message: `Kommo conectado: ${result.account.name}`,
+                            timestamp: new Date()
+                        });
+                    } else {
+                        this.addLogEntry({
+                            level: 'error',
+                            message: `Erro no Kommo: ${result.error}`,
+                            timestamp: new Date()
+                        });
+                    }
+                } catch (error) {
+                    console.error('Erro no teste Kommo:', error);
+                } finally {
+                    document.getElementById('test-kommo').disabled = false;
+                    document.getElementById('test-kommo').innerHTML = '<i class="fas fa-test-tube me-2"></i>Testar Kommo';
+                }
+            }
+
+            async validateFile(file) {
+                const formData = new FormData();
+                formData.append('zipfile', file);
+                
+                const progressBar = document.getElementById('upload-progress');
+                const progressBarInner = progressBar.querySelector('.progress-bar');
+                const resultDiv = document.getElementById('validation-result');
+                
+                progressBar.style.display = 'block';
+                resultDiv.style.display = 'none';
+                
+                try {
+                    // Simular progresso
+                    let progress = 0;
+                    const progressInterval = setInterval(() => {
+                        progress += 10;
+                        progressBarInner.style.width = `${Math.min(progress, 90)}%`;
+                    }, 100);
+                    
+                    const response = await fetch('/api/validate-zip', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    const result = await response.json();
+                    
+                    clearInterval(progressInterval);
+                    progressBarInner.style.width = '100%';
+                    
+                    setTimeout(() => {
+                        progressBar.style.display = 'none';
+                        this.showValidationResult(result);
+                    }, 500);
+                    
+                } catch (error) {
+                    console.error('Erro na validação:', error);
+                    progressBar.style.display = 'none';
+                    this.showValidationResult({ isValid: false, errors: ['Erro interno: ' + error.message] });
+                }
+            }
+
+            showValidationResult(result) {
+                const resultDiv = document.getElementById('validation-result');
+                
+                let html = '';
+                if (result.isValid) {
+                    html = `
+                        <div class="validation-result validation-success">
+                            <h6><i class="fas fa-check-circle me-2"></i>Arquivo Válido</h6>
+                            <p><strong>Nome:</strong> ${result.info.fileName}</p>
+                            <p><strong>Tamanho:</strong> ${this.formatBytes(result.info.fileSize)}</p>
+                            <p><strong>Entradas:</strong> ${result.info.entryCount}</p>
+                        </div>
+                    `;
+                } else {
+                    html = `
+                        <div class="validation-result validation-error">
+                            <h6><i class="fas fa-exclamation-triangle me-2"></i>Arquivo Inválido</h6>
+                            <p><strong>Erros encontrados:</strong></p>
+                            <ul>
+                                ${result.errors.map(error => `<li>${error}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+                
+                resultDiv.innerHTML = html;
+                resultDiv.style.display = 'block';
+            }
+
+            clearLogs() {
+                const logContainer = document.getElementById('log-container');
+                logContainer.innerHTML = '<div class="log-entry log-info">[SYSTEM] Logs limpos</div>';
+            }
+
+            toggleAutoScroll(e) {
+                this.autoScroll = !this.autoScroll;
+                const button = e.target.closest('button');
+                
+                if (this.autoScroll) {
+                    button.innerHTML = '<i class="fas fa-arrow-down me-1"></i>Auto-scroll';
+                    button.classList.remove('btn-outline-warning');
+                    button.classList.add('btn-outline-secondary');
+                } else {
+                    button.innerHTML = '<i class="fas fa-pause me-1"></i>Pausado';
+                    button.classList.remove('btn-outline-secondary');
+                    button.classList.add('btn-outline-warning');
+                }
+            }
+
+            startUptimeTimer() {
+                setInterval(() => {
+                    const uptime = Math.floor((Date.now() - this.startTime) / 1000);
+                    const minutes = Math.floor(uptime / 60);
+                    const hours = Math.floor(minutes / 60);
+                    
+                    let uptimeText;
+                    if (hours > 0) {
+                        uptimeText = `${hours}h ${minutes % 60}m`;
+                    } else {
+                        uptimeText = `${minutes}m`;
+                    }
+                    
+                    document.getElementById('uptime').textContent = uptimeText;
+                }, 60000);
+            }
+
+            async loadInitialData() {
+                try {
+                    const response = await fetch('/api/status');
+                    const status = await response.json();
+                    this.updateStatus(status);
+                } catch (error) {
+                    console.error('Erro ao carregar dados iniciais:', error);
+                }
+            }
+
+            formatBytes(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+        }
+
+        // Inicializar dashboard quando a página carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            new PowerMateDashboard();
+        });
+    </script>
+</body>
+</html>

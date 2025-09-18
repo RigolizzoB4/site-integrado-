@@ -59,6 +59,7 @@ Este projeto contém três versões diferentes do site B4 Trade com fundos criat
 - Font Awesome 6.0.0 para ícones
 - Google Fonts (Inter) para tipografia
 - JavaScript para interatividade
+- **PowerMate Automation**: Node.js, Express, Socket.IO, Chokidar
 
 ## Compatibilidade
 
@@ -69,4 +70,37 @@ Este projeto contém três versões diferentes do site B4 Trade com fundos criat
 ---
 
 **Desenvolvido com técnicas modernas de design web para B4 Trade**
+
+---
+
+## 🤖 PowerMate Automation
+
+Este projeto agora inclui o **PowerMate Automation**, um sistema completo de automação para:
+
+### ✨ Funcionalidades PowerMate
+- **Validação automática de arquivos ZIP** - Verifica integridade e segurança
+- **Monitor de pasta OneDrive** - Detecta novos arquivos automaticamente  
+- **Integração Kommo CRM** - Cria leads e anexa arquivos automaticamente
+- **Dashboard web em tempo real** - Interface de monitoramento e controle
+
+### 🚀 Como usar o PowerMate
+1. **Instalar dependências**: `npm install`
+2. **Configurar ambiente**: Copie `.env.example` para `.env` e configure
+3. **Iniciar sistema**: `npm start`
+4. **Acessar dashboard**: http://localhost:3000/powermate
+
+### 📁 Estrutura PowerMate
+```
+automation/
+├── config.js              # Configurações do sistema
+├── index.js               # Arquivo principal
+├── folder-monitor.js      # Monitor de pasta OneDrive
+├── zip-validator.js       # Validador de arquivos ZIP
+├── kommo-integration.js   # Integração com Kommo CRM
+├── web-interface.js       # Servidor web e API
+├── dashboard.html         # Interface web do dashboard
+└── logger.js             # Sistema de logs
+```
+
+Veja o arquivo [POWERMATE_README.md](POWERMATE_README.md) para documentação completa.
 

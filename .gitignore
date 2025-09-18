@@ -1,0 +1,87 @@
+# PowerMate Automation - Arquivos a serem ignorados
+
+# Dependências do Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Arquivos de ambiente (contém credenciais sensíveis)
+.env
+.env.local
+.env.production
+
+# Logs do sistema
+automation/logs/
+*.log
+
+# Arquivos temporários
+automation/temp/
+temp/
+tmp/
+
+# Arquivos de upload/processamento
+uploads/
+downloads/
+processing/
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs e editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Arquivos de backup
+*.bak
+*.backup
+*.old
+
+# Arquivos de teste
+test-files/
+*.test.zip
+
+# Cache do Node.js
+.npm
+.node_repl_history
+
+# Coverage de testes
+coverage/
+.nyc_output/
+
+# Arquivos de configuração local
+config.local.js
+local.config.json
+
+# Arquivos específicos do Windows
+*.lnk
+
+# Arquivos específicos do macOS
+.AppleDouble
+.LSOverride
+
+# Arquivos específicos do Linux
+*~
+
+# Certificados e chaves
+*.pem
+*.key
+*.cert
+*.crt
+
+# Dados sensíveis
+secrets/
+credentials/
+tokens/
+
+# Cache de aplicações
+.cache/
+dist/
+build/

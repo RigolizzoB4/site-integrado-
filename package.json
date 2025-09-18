@@ -1,0 +1,38 @@
+{
+  "name": "powermate-automation",
+  "version": "1.0.0",
+  "description": "Automação PowerMate para validação de ZIP e integração com Kommo CRM",
+  "main": "automation/index.js",
+  "scripts": {
+    "start": "node automation/index.js",
+    "monitor": "node automation/folder-monitor.js",
+    "validate": "node automation/zip-validator.js",
+    "web": "node automation/web-interface.js"
+  },
+  "keywords": [
+    "automation",
+    "kommo",
+    "zip-validation",
+    "file-monitoring",
+    "onedrive",
+    "powermate"
+  ],
+  "author": "B4 Trade",
+  "license": "MIT",
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "axios": "^1.6.0",
+    "yauzl": "^2.10.0",
+    "socket.io": "^4.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
